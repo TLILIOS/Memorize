@@ -8,14 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
-    let emojis = ["🦜", "🐬", "🐣"].shuffled()
+    let emojis = ["🦜", "🐬", "🐣","🐸", "🐓", "🦩", "🐇", "🐈", "🦘", "🐄", "🐑", "🐠","🐙","🦀" ].shuffled()
+    @State var cartCount = 4
     var body: some View {
-        HStack {
-            ForEach(emojis.indices, id: \.self) { index in CardView(content: emojis[index])
-                
+        VStack {
+            HStack {
+                ForEach(0..<cartCount, id: \.self) { index in CardView(content: emojis[index])
+                }
+                .foregroundColor(.orange)
             }
+                HStack {
+                    Button("Add Card") {
+                        cartCount += 1
+                    }
+                    Spacer()
+                    Button("Remove Card") {
+                        cartCount -= 1
+                    }
+                }
         }
-        .foregroundColor(.orange)
         .padding()
     }
 }
@@ -24,7 +35,7 @@ struct ContentView: View {
 
 struct CardView: View {
     let content: String
- @State var isFaceUp = false
+    @State var isFaceUp = false
     var body: some View {
         ZStack {
             let base = RoundedRectangle(cornerRadius: 30)
@@ -38,7 +49,7 @@ struct CardView: View {
                 
             } else {
                 base
-                   
+                
             }
         }
         .onTapGesture {
