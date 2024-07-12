@@ -20,8 +20,10 @@ struct EmojiMemoryGameView: View {
             Button("Shuffle") {
                 viewModel.shuffle()
             }
-            .padding()
+            .background(Color.yellow)
+            
         }
+        .padding()
     }
    
     
